@@ -61,3 +61,4 @@ h09	paraphrase	reading tiny or fancy-font text on menus and product labels	hand
 h10	paraphrase	recognizing pedestrians and cars in snow when the training photos are mostly sunny	hand
 h11	paraphrase	brightening photos taken at night without adding a lot of noise	hand
 h12	mixed	segmenting lung problems in chest X-rays when only a few labeled images exist	hand
+h13	mixed	removing the dark bands that rolling-shutter phone cameras get under indoor lights	hand
