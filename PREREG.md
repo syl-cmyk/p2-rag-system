@@ -24,7 +24,7 @@ One sentence, about your own corpus, naming two of your systems and a direction.
 For example: "On my corpus of Kubernetes documentation, `rerank` has a higher MRR@10 than `hybrid`, because the queries are paraphrases that a first-stage fusion ranks too low."
 It should be something you could be wrong about.
 
-TODO: your hypothesis.
+On my corpus of arXiv cs.CV abstracts, `rerank` has a higher MRR@10 than `hybrid`, because a lot of my queries describe a paper in different words than its abstract uses, so `hybrid` gets the right paper into the top 10 but often not at rank 1, and the reranker reads the query and each abstract together so it can tell which one actually matches and move it up.
 
 ---
 
@@ -36,7 +36,9 @@ A difference of 0.02 is usually not worth a reranker's cost in time and tokens.
 In this course, choose a Δ of at least 0.15 unless you argue for a larger one, because a smaller gap takes more queries than one project can judge.
 Call your number Δ (delta).
 
-TODO: your metric and your Δ, with the reason.
+Metric: MRR@10. Δ = 0.15, because rerank costs about 12 seconds and about 12k tokens more per query, so it has to change what the user sees first.
+
+0.15 is about the same as 3 out of every 10 queries moving the right paper from rank 2 to rank 1. a smaller gap means only one or two queries out of ten get better, and a user wouldn't notice that for the extra wait.
 
 ---
 
@@ -65,7 +67,9 @@ After you score the own corpus, the minimum detectable difference that `uv run p
 It should come out at or below your Δ.
 If it does not, your queries varied more than your stage 1 sd suggested, and you will say so in the outcome.
 
-TODO: your sd, which pair it came from, your n, and the number of queries you will write (at least n).
+sd = 0.397, the standard deviation of the per-query MRR@10 differences between `rerank` and `hybrid` on the 20 shared practice queries (`results/results.json`). n = ((1.96 + 0.84) × 0.397 / 0.15)² ≈ 55.
+
+20 queries is a small sample, so the sd itself could be off, and if the real sd is bigger I'd need more queries than 55. so I round up and will write 60 queries.
 
 ---
 
@@ -82,7 +86,7 @@ This is the default rule, and you can tighten it, but do not loosen it after you
 | around zero, with both ends inside plus or minus Δ | well-powered null: a difference as large as Δ is ruled out |
 | around zero, with an end beyond plus or minus Δ | inconclusive: the gold set could not settle it, and I say so |
 
-TODO: confirm or tighten this rule, and name the two systems and the metric once more.
+I keep the default rule above, unchanged. Systems: `rerank` minus `hybrid`. Metric: MRR@10, from the `own-pairs` table.
 
 ---
 
