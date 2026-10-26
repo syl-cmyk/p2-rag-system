@@ -52,7 +52,6 @@ c47	mixed	low-dose CT denoising with PPO reinforcement learning	claude
 c48	mixed	cross-modal remote sensing image matching with fused attention	claude
 h01	identifier	deep learning edge detection more accurate than Canny	hand
 h02	paraphrase	finding the same point in two photos and matching them up	hand
-h03	mixed	how kernels learned by a CNN differ from hand-designed filters like Sobel	hand
 h04	paraphrase	finding the same object in an image even when the lighting changes	hand
 h05	paraphrase	enlarging a tiny blurry old photo so the details become clear again	hand
 h06	identifier	detecting deepfake face swap videos	hand
