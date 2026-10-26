@@ -26,7 +26,13 @@ Commit this answer before your first `uv run p2 score` on the own corpus.
 Git history then shows that the expectation came first, which is what lets it be wrong in a way that teaches you something.
 If you were surprised later, say so in prompt 4 or in EVAL.md; do not come back and rewrite this one.
 
-TODO: your answer to prompt 1.
+I picked arXiv cs.CV because I'm taking a computer vision class this semester, so a lot of these papers are about stuff I actually learned, like edge detection, convolution and matching points between two photos.
+
+it's also really different from the mining regulations in stage 1. those are long legal sections with very different lengths, and these are short abstracts, about 200 words each and almost all of them fit in one chunk. so I want to see if the same ranking still holds.
+
+I expect rerank to win because it was the best on the stage 1 practice queries (0.775), and a lot of my queries are paraphrases that don't use the paper's own words. the reranker reads the query and the abstract together, so it can still tell which paper really matches.
+
+I expect bm25 to do worst because it only matches keywords, so on the paraphrase queries it has nothing to match. it should do fine on names like GACO-CAD or MInDI-3D, but those are fewer than the paraphrase ones.
 
 ---
 
