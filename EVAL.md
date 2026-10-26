@@ -197,6 +197,8 @@ What did you change, what happened, and does the interval support the claim you 
 If the result is not distinguishable, say what size of effect your gold set could have seen.
 Read the queries at the top of each list in the second table, and say whether your change explains them.
 
+Hypothesis: I expect bm25_lab to lower MRR@10 compared with bm25 on my corpus, because on the identifier queries with hyphenated names (c02, c03, c05, c07, c08, c12, c13, c15) it loses the rare full token like gaco-cad, and the leftover pieces like detr, lora or cad show up in lots of other papers, so the right paper can drop down, while the paraphrase queries have almost no hyphenated words, so they should stay about the same.
+
 TODO: write the ablation: the one change, the hypothesis, the result and the claim.
 
 ---
