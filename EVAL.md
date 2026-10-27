@@ -339,7 +339,13 @@ Read the queries at the top of each list in the second table, and say whether yo
 
 Hypothesis: I expect bm25_lab to lower MRR@10 compared with bm25 on my corpus, because on the identifier queries with hyphenated names (c02, c03, c05, c07, c08, c12, c13, c15) it loses the rare full token like gaco-cad, and the leftover pieces like detr, lora or cad show up in lots of other papers, so the right paper can drop down, while the paraphrase queries have almost no hyphenated words, so they should stay about the same.
 
-TODO: write the ablation: the one change, the hypothesis, the result and the claim.
+the one change was the bm25 tokenizer: bm25 keeps a hyphenated word as one extra whole token as well as its pieces (gaco-cad, gaco, cad), and bm25_lab keeps only the pieces. everything else stayed the same.
+
+my hypothesis was wrong. I guessed it would get worse, but it got a little better: bm25_lab minus bm25 is +0.011 MRR@10 [+0.002, +0.023], with an MDD of 0.014, so the gain is distinguishable but very small.
+
+the identifier queries didn't change at all (0.971 for both). after a name is split, at least one of its pieces still appears only in that one paper (gaco, mindi, cut3r and jarvis each appear in a single document), so the right paper is still found.
+
+the four queries it helped (c17, h16, c18, c22) are all paraphrase queries, and it hurt one (h02). the whole hyphenated word in the query, like vision-language, does not appear in the right paper at all, but it does appear in unrelated papers, which got extra points from it and moved to the top. once it is split, that whole word is gone, the unrelated papers lose those points, and the right paper moves up.
 
 ---
 
