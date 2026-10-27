@@ -101,7 +101,11 @@ Which differences are distinguishable from zero and which are not?
 What is the minimum detectable difference at 20 queries, and what does that say about any gap smaller than it?
 Which claim from lecture 12 or 13 did your numbers support, and which did they leave open?
 
-TODO: write what the practice-query intervals let you claim.
+only the rerank comparisons can be told apart. rerank is higher than the other three, but against bm25 the lower end of the interval is only +0.026, so it barely counts. dense vs bm25, hybrid vs bm25 and hybrid vs dense are all not distinguishable.
+
+a gap has to be about 0.19 to 0.41 before 20 queries can see it. anything smaller is invisible here, but that doesn't mean the two systems are the same.
+
+"a reranker helps" is supported: against its own first stage, hybrid, rerank is +0.304 [+0.140, +0.481]. "fusing beats both alone" is not supported: hybrid has the lowest average, but its gaps are not distinguishable either, so it is left open. bm25 and dense clearly complement each other (bm25 got 0.000 on the paraphrase queries and 0.810 on identifiers, dense got 0.714 and 0.333), but RRF didn't turn that into an advantage.
 
 ---
 
