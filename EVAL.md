@@ -157,7 +157,11 @@ How did you decide that a document is relevant: write your relevance rule in two
 How did you find candidates (the systems' top 10, a keyword search, reading), and did you read every document before you labeled it?
 Your labels are binary (`rel` 1) unless you say otherwise: if you use graded labels, declare the scale here, for example 2 means the document answers the query fully and 1 means it helps.
 
-TODO: describe your gold set and your relevance rule.
+the gold set has 59 queries: 11 hand and 48 claude. I used the same three classes as stage 1, identifier, paraphrase and mixed, so the two corpora can be compared class by class. there are 63 judgments, and the labels are binary.
+
+my relevance rule: a paper is relevant only if it can directly answer the query. a paper that is only related to the topic doesn't count. for example, h06 asks about face swap videos, and 2505.08437 fakes whole bodies, so I didn't label it.
+
+the candidates for each query were the top 5 of all four systems plus the paper a claude query was drafted from, merged and sorted by docid, without showing which system found which. for h12 and h14 to h16, which I added later, the candidates were the top 5 of bm25, dense and hybrid plus a keyword search. I read the title of every candidate, and when several of them were close to the query, I read the key sentences of their abstracts to decide. I judged the gold set twice, and PREREG.md section 6 says why and what changed.
 
 ---
 
