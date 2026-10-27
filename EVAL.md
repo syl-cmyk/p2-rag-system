@@ -105,7 +105,7 @@ only the rerank comparisons can be told apart. rerank is higher than the other t
 
 a gap has to be about 0.19 to 0.41 before 20 queries can see it. anything smaller is invisible here, but that doesn't mean the two systems are the same.
 
-"a reranker helps" is supported: against its own first stage, hybrid, rerank is +0.304 [+0.140, +0.481]. "fusing beats both alone" is not supported: hybrid has the lowest average, but its gaps are not distinguishable either, so it is left open. bm25 and dense clearly complement each other (bm25 got 0.000 on the paraphrase queries and 0.810 on identifiers, dense got 0.714 and 0.333), but RRF didn't turn that into an advantage.
+"a reranker helps" is supported: against its own first stage, hybrid, rerank is +0.304 [+0.140, +0.481], and that interval is far from zero; only the pair against bm25 barely counts. "fusing beats both alone" is not supported: hybrid has the lowest average, but its gaps are not distinguishable either, so it is left open. bm25 and dense clearly complement each other (bm25 got 0.000 on the paraphrase queries and 0.810 on identifiers, dense got 0.714 and 0.333), but RRF didn't turn that into an advantage.
 
 ---
 
@@ -283,7 +283,11 @@ Which differences are distinguishable and which are not, at your gold-set size?
 Do the `hand` queries and the `claude` queries tell the same story?
 Did your prediction in `DECISIONS.md` prompt 1 hold?
 
-TODO: write what your own-corpus intervals let you claim.
+on 59 queries, every pair except hybrid vs dense can be told apart. rerank is higher than the other three, and bm25 is lower than the other three. but the lower end of rerank vs dense is only +0.001, almost touching zero, so that pair barely counts.
+
+the hand and claude queries rank the systems in the same order: rerank > dense > hybrid > bm25 in both groups. but the scores are very different: every system is 0.26 to 0.51 higher on the claude queries, and bm25 has the biggest gap (0.323 vs 0.832). the reason is that Claude drafted each query from a paper, so its words overlap the paper by 0.76, against 0.36 for my hand queries (most of the words in a claude query come straight from the paper). so the claude queries are easy for every system.
+
+my prediction in DECISIONS.md was right. rerank has the highest average and can be told apart from the other three, and bm25 is the lowest and can be told apart from the other three as well.
 
 ---
 
