@@ -359,7 +359,6 @@ Then sort the failures by cause, for example a vocabulary mismatch, near-duplica
 
 | qid | what the best system returned | what was relevant | cause | what you would try |
 |---|---|---|---|---|
-
 | c32 | 2509.07049, classifying streaming image data with image distillation | 2505.03113, a survey of online lightweight vision transformers (rank 4) | label was wrong: 2509.07049 answers the query and I missed it, and 2505.03113 is a survey that doesn't answer it either | if I judged again, label 2509.07049 and drop 2505.03113 |
 | h02 | 2510.04231, image registration: aligning two images so corresponding points land in the same place | 2510.16438, LightGlueStick, joint point and line matching (rank 4) | label was missing: 2510.04231 is exactly about finding corresponding points in two images and aligning them | if I judged again, label 2510.04231 as relevant too |
 | h06 | 2504.04827, general face deepfake detection | 2412.12278 and 2508.08765, deepfake video detection (rank 2) | label was missing: it does detect face swaps, it just isn't specifically about video | if I judged again, label 2504.04827 as relevant too |
