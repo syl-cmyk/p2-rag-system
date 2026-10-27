@@ -489,6 +489,14 @@ _No stretch runs yet (stretch option 5): `uv run p2 run --corpus own --queries e
 
 Write the five things here.
 
+rider
+
+1. the 598E rider.
+2. I ran rerank three times on the shared practice queries and answered the 12 shared questions three times, asking Claude again each time, and I wrote and committed PREREG.md before judging my gold set. the files are runs/shared/rerank.practice.r1.trec to r3, answers/shared/rerank.r1.json to r3, and PREREG.md.
+3. the table is repeats, in section 9.
+4. the repeats show that rerank's gain over hybrid holds up across runs, but with so few questions, a perfect score on the answers doesn't mean they are really reliable (see section 9).
+5. next I would write more hand queries (40 or more), judge them carefully and fill in the missing labels, then compare rerank and hybrid again. if rerank minus hybrid on the hand queries also has an interval entirely above zero, that would show rerank really helps on real users' paraphrased questions.
+
 ---
 
 ## 9. 598E only - repeats and the pre-registered claim
@@ -537,7 +545,9 @@ Each repeat answers the same questions, so the repeats are not independent trial
 Does the reranker's gain over its first stage survive the run-to-run variation?
 Write what the spread is, how it compares with the gain, and what the Wilson intervals on the verified share and the declined share say about 8 and 4 questions.
 
-598E: write the repeats result here.
+it holds up. across the three runs MRR@10 didn't change at all (a spread of 0.000), while the gain over hybrid is 0.304, and all three runs have intervals above zero.
+
+there are too few questions, so a perfect score doesn't mean the answers are really reliable. 8 of 8 verified only says the verified rate is probably above about 68% [0.676, 1.000], and 4 of 4 declined only says the declined rate is probably above about 51% [0.510, 1.000]. the three repeats answer the same questions, so they are not independent and can't be pooled into 24.
 
 ### The pre-registered claim
 
