@@ -47,7 +47,7 @@ If you rejected the alternative without measuring it, say why that was a fair ca
 "There was no alternative" is not an answer.
 Find the fork.
 
-TODO: your answer to prompt 2.
+the fork was the bm25 tokenizer, and I measured both sides. I kept codes, which keeps a hyphenated word like gaco-cad as one extra whole token, and didn't switch to lab, which only keeps the pieces. on my 59 queries bm25 got 0.737 MRR@10 with codes and bm25_lab got 0.749 with lab, a gap of only +0.011 [+0.002, +0.023]. that's too small, and the bm25 inside my other systems (hybrid, and rerank through hybrid) is built with codes, so switching would mean running everything again. so I gave up that small gain to keep one tokenizer across all the systems, so their results can be compared directly.
 
 ---
 
