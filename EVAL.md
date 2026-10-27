@@ -124,7 +124,15 @@ Then read three in-corpus answers that `uv run p2 verify` passed.
 For each one, open the cited chunk and say whether the quote really supports the claim next to it.
 The check proves a quote is a real piece of the chunk and cannot prove that it supports the claim, so this reading is the part only you can do.
 
-TODO: write your answer choices and your three-answer audit.
+I answered with rerank, because on the stage 1 practice queries it was the only system that clearly beat the other three, and the other systems could not be told apart from each other. I didn't change prompts/answer.txt.
+
+a01: mostly supported. the 15 minutes and the death are both in the quote, but in the quote the 15 minutes start from when the operator "knows or should know", and the claim says "after an accident", so it drops that condition.
+
+a05: claim 1 is supported. claim 2 is partly supported. the 8 hours is in the quote, but the quote says the conditions should duplicate underground conditions "as closely as practicable", and the claim drops "as practicable", so it makes the rule sound stricter than the quote.
+
+a07: claim 1 is supported. claim 2 is not supported. the two quotes only show that the same sentence appears in both 56 and 57, and neither says "metal and nonmetal". you need outside knowledge to know what parts 56 and 57 cover, and the difference between them is surface vs underground, not metal vs nonmetal.
+
+p2 verify can only prove that the quoted text really exists, not that it supports the claim next to it. all three passed, but one claim is not supported and two are only partly supported, so verify alone is not enough, and a person still has to check that the quote and the claim match.
 
 ---
 
