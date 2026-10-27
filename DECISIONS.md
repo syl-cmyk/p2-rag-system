@@ -75,7 +75,7 @@ It could be a mean over a small query class, a difference whose interval include
 What would have to be true for you to trust it?
 Did you do anything to test it, and what did that show?
 
-TODO: your answer to prompt 4.
+I don't trust rerank's 0.984 MRR@10 on the claude queries. Claude wrote those queries from the papers, so their words overlap the paper by 0.76 and the queries are too easy. I checked it: the same rerank only gets 0.720 on my hand queries, where the overlap is 0.36. to trust it, rerank would have to score this high on many more queries written in my own words.
 
 ---
 
@@ -86,4 +86,4 @@ One thing in your system, your corpus or your gold set that is not right, not fi
 What would you do next, and how would you find out whether it matters?
 Name the file, the query or the document where someone could look.
 
-TODO: your answer to prompt 5.
+in eval/own/qrels.txt, for c32, h02 and h06, the paper rerank ranked first is actually right, but I didn't label it when I judged. next I would take the top 10 of all four systems and judge every query again. it matters because just adding those few papers moves rerank's lead over hybrid from 0.099 to 0.113, so how accurate the labels are directly changes the scores. this time it didn't change the conclusion, but bigger label mistakes could.
