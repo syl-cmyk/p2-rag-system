@@ -144,7 +144,11 @@ What is it, where did it come from, how many documents and how many megabytes, a
 Name the one or two documents you were least sure about and what you decided.
 Say which of the allowed sources in the brief it comes from.
 
-TODO: describe your corpus and its license basis.
+my corpus is the titles and abstracts of arXiv cs.CV papers. I picked it because I'm taking a computer vision class, so I know a bit about the field and have a lot of questions about it. I fetched them with arXiv's OAI-PMH interface (scripts/fetch_arxiv.py), for papers updated between 2025-09-01 and 2025-10-22, and only kept papers whose primary category is cs.CV and whose own license is CC BY 4.0 (1,670 papers) or CC BY-SA 4.0 (106 papers). so it comes from the arXiv option in the brief, and the license basis is each paper's own CC license.
+
+it has 1,776 documents, about 353,000 words and 2.7 MB of text. uv run p2 license shows 0 failing and 0 flagged, and uv run p2 license --online matches all 1,776 with the license arXiv publishes. I planned about 600 papers but got 1,776, because OAI-PMH filters by the last-modified date, so older papers that were updated in that window came in too.
+
+the one I was least sure about was 2509.17993 (StableGuard). "Copyright" is in its title, so the license check flagged it. I looked at its arXiv page, the license is CC BY 4.0, and "copyright" is just the research topic of the paper, so I kept it and marked it reviewed in the manifest.
 
 ### The gold set
 
