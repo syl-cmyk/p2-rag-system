@@ -381,7 +381,23 @@ Did the winner change between the shared corpus and yours?
 Why, or why not: what is different about the two collections (document length, vocabulary, identifiers, near-duplicates, how the queries were written), and which of your explanations did you test and which are guesses?
 Say what 20 queries on one side and your gold-set size on the other cannot support.
 
-TODO: write the cross-corpus comparison.
+I copied the MRR@10 numbers from the tables in sections 1 and 4 into this table.
+
+| | stage 1, regulations, 20 queries | stage 2, my corpus, 59 queries |
+|---|---|---|
+| bm25 | 0.507 | 0.737 |
+| dense | 0.562 | 0.854 |
+| hybrid | 0.471 | 0.836 |
+| rerank | 0.775 | 0.935 |
+| rerank minus hybrid | +0.304 [+0.140, +0.481], distinguishable | +0.099 [+0.020, +0.181], distinguishable |
+
+the winner didn't change. rerank wins on both, and on both it can be told apart, but its lead over hybrid shrank from 0.304 to 0.099.
+
+the main reason every system scores higher on my corpus is that 48 of the 59 queries were written by Claude from the papers, so the queries share a lot of words with the papers and every system finds them easily. also, the abstracts are short, almost every one fits in one chunk, and there are no section numbers like in the regulations, which may make retrieval easier too.
+
+what I tested: the difference between the hand and claude queries (the own-origins table) and the effect of the tokenizer (the ablation). what I only guessed and never tested: that short documents help dense, and that the section numbers in the regulations make retrieval harder.
+
+20 queries can't see a gap below about 0.19 to 0.41, so the stage 1 systems that are "not distinguishable" could still be very different. on my side, only 11 of the 59 queries are hand queries, and the failure analysis found missing and wrong labels in the gold set, so it can't support the claim that rerank is also better on real users' questions.
 
 ---
 
