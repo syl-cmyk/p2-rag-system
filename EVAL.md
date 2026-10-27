@@ -25,7 +25,11 @@ The minimum detectable difference is the smallest gap this many queries could re
 
 For each of `dense`, `hybrid` and `rerank`, one or two sentences: the embedding model, how documents were chunked, what was fused and how, how many candidates the reranker saw, and anything you changed from the 12 and 13 lab code.
 
-TODO: describe your three systems.
+dense uses bge-small-en-v1.5. it cuts each document into 300-word chunks, ranks them by cosine similarity (how close the meaning is), and a document's score is the score of its best chunk. lab 12 ranked whole documents, and here I changed it to rank chunks.
+
+hybrid merges the bm25 and dense rankings with RRF (k = 60). each document gets 1/(60 + rank) from each of the two rankings and the two are added up. it merges the full rankings, not only the top 10.
+
+rerank takes the top 20 from hybrid and gives them to Claude to reorder, with only the first 600 characters of each document. Claude has to return each number from 1 to 20 exactly once (this limit is something I added on top of the lab version). if the reply is in the wrong format, the hybrid order is kept.
 
 ### Practice queries (20)
 
