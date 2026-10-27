@@ -101,7 +101,7 @@ Which differences are distinguishable from zero and which are not?
 What is the minimum detectable difference at 20 queries, and what does that say about any gap smaller than it?
 Which claim from lecture 12 or 13 did your numbers support, and which did they leave open?
 
-only the rerank comparisons can be told apart. rerank is higher than the other three, but against bm25 the lower end of the interval is only +0.026, so it barely counts. dense vs bm25, hybrid vs bm25 and hybrid vs dense are all not distinguishable.
+on MRR@10, only the rerank comparisons can be told apart. rerank is higher than the other three, but against bm25 the lower end of the interval is only +0.026, so it barely counts. dense vs bm25, hybrid vs bm25 and hybrid vs dense are all not distinguishable.
 
 a gap has to be about 0.19 to 0.41 before 20 queries can see it. anything smaller is invisible here, but that doesn't mean the two systems are the same.
 
@@ -283,7 +283,7 @@ Which differences are distinguishable and which are not, at your gold-set size?
 Do the `hand` queries and the `claude` queries tell the same story?
 Did your prediction in `DECISIONS.md` prompt 1 hold?
 
-on 59 queries, every pair except hybrid vs dense can be told apart. rerank is higher than the other three, and bm25 is lower than the other three. but the lower end of rerank vs dense is only +0.001, almost touching zero, so that pair barely counts.
+on MRR@10 over 59 queries, every pair except hybrid vs dense can be told apart. rerank is higher than the other three, and bm25 is lower than the other three. but the lower end of rerank vs dense is only +0.001, almost touching zero, so that pair barely counts.
 
 the hand and claude queries rank the systems in the same order: rerank > dense > hybrid > bm25 in both groups. but the scores are very different: every system is 0.26 to 0.51 higher on the claude queries, and bm25 has the biggest gap (0.323 vs 0.832). the reason is that Claude drafted each query from a paper, so its words overlap the paper by 0.76, against 0.36 for my hand queries (most of the words in a claude query come straight from the paper). so the claude queries are easy for every system.
 
@@ -341,7 +341,7 @@ Hypothesis: I expect bm25_lab to lower MRR@10 compared with bm25 on my corpus, b
 
 the one change was the bm25 tokenizer: bm25 keeps a hyphenated word as one extra whole token as well as its pieces (gaco-cad, gaco, cad), and bm25_lab keeps only the pieces. everything else stayed the same.
 
-my hypothesis was wrong. I guessed it would get worse, but it got a little better: bm25_lab minus bm25 is +0.011 MRR@10 [+0.002, +0.023], with an MDD of 0.014, so the gain is distinguishable but very small.
+my hypothesis was wrong. I guessed it would get worse, but it got a little better: bm25_lab minus bm25 is +0.011 MRR@10 [+0.002, +0.023], with an MDD of 0.016, so the gain is distinguishable but very small.
 
 the identifier queries didn't change at all (0.971 for both). after a name is split, for 7 of the 8 hyphenated names at least one piece still appears only in that one paper (gaco, mindi, cut3r and jarvis each appear in a single document), so the right paper is still found. WAVE-DETR is the exception: wave appears in 4 papers and detr in 10, but c12 still stayed at rank 1, so the other words in the query must have been enough.
 
