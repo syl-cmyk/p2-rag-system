@@ -358,7 +358,17 @@ Then sort the failures by cause, for example a vocabulary mismatch, near-duplica
 | qid | what the best system returned | what was relevant | cause | what you would try |
 |---|---|---|---|---|
 
-TODO: add one row for each failure you analyzed, and write two or three sentences on the pattern you see across them.
+| c32 | 2509.07049, classifying streaming image data with image distillation | 2505.03113, a survey of online lightweight vision transformers (rank 4) | label was wrong: 2509.07049 answers the query and I missed it, and 2505.03113 is a survey that doesn't answer it either | if I judged again, label 2509.07049 and drop 2505.03113 |
+| h02 | 2510.04231, image registration: aligning two images so corresponding points land in the same place | 2510.16438, LightGlueStick, joint point and line matching (rank 4) | label was missing: 2510.04231 is exactly about finding corresponding points in two images and aligning them | if I judged again, label 2510.04231 as relevant too |
+| h06 | 2504.04827, general face deepfake detection | 2412.12278 and 2508.08765, deepfake video detection (rank 2) | label was missing: it does detect face swaps, it just isn't specifically about video | if I judged again, label 2504.04827 as relevant too |
+| h11 | 2510.09343, thermal infrared image enhancement | 2302.02030, deblurring telescope images of the night sky (rank 6) | label was wrong: the paper I labeled is not about brightening night photos, and rerank's first result isn't either, it's about infrared images | label SPICE (2510.08358), which brightens dark photos, and put "low-light" in the query |
+| h14 | 2510.13316, whether GPT-4o finds the same images interesting as humans | 2509.12248, whether multimodal models understand humor in comics (not in the top 10) | ambiguous query: "GPT" and "people" in my query match the paper about interestingness (GPT 4 times, human 5 times), while the humor paper has no GPT and mentions human only once | rewrite the query to ask one thing, like "can multimodal models get the jokes in comics" |
+
+most of these 5 failures are not the system's fault but the gold set's: for 3 of them (c32, h02, h06), rerank's first result is actually right and I just didn't label it.
+
+also, 4 of the 5 are hand queries, so the labels for the hand queries are the least reliable, maybe because their words don't match the papers and I was more likely to miss things when judging them.
+
+so rerank's score is probably underestimated. as a check, without changing qrels.txt, I recomputed MRR@10 with the fixes above for c32, h02 and h06: rerank goes from 0.935 to 0.969, hybrid from 0.836 to 0.856, dense from 0.854 to 0.859 and bm25 from 0.737 to 0.754, so rerank's lead over hybrid would grow from 0.099 to 0.113.
 
 ---
 
