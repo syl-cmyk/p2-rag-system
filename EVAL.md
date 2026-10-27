@@ -555,4 +555,8 @@ The claim, the smallest effect, the gold-set size and the test are in `PREREG.md
 Here, say whether you followed the plan, what the interval turned out to be, and what that means.
 The outcome section of `PREREG.md` holds the short version.
 
-598E: write the claim and its outcome here.
+my pre-registered claim was that on my arXiv cs.CV corpus rerank has a higher MRR@10 than hybrid, with Δ = 0.15. it is row 1, supported: rerank is 0.099 higher than hybrid on MRR@10, and the interval [+0.020, +0.181] is entirely above zero. but 0.099 didn't reach the 0.15 I set, and 0.15 is still inside the interval, so I can only say rerank really is better, not that it is better by the amount I cared about.
+
+I mostly followed the plan, but I re-judged the gold set, dropped, replaced and added queries, and all of these changes are recorded in section 6 of PREREG.md. in the end the gold set has 59 queries, not 60.
+
+what I want a reader to take from this: rerank is better than hybrid, but the gap may be smaller than I first thought.

@@ -97,7 +97,11 @@ Which row of the table in section 4 is it?
 Did your gold set reach the size section 3 asked for, and what was the minimum detectable difference that `uv run p2 score` printed?
 What would you do next, and what would you want a reader to take from this?
 
-TODO: your outcome.
+it is row 1, supported: rerank is 0.099 higher than hybrid on MRR@10, and the interval [+0.020, +0.181] is entirely above zero. but 0.099 didn't reach the 0.15 I set, and 0.15 is still inside the interval, so I can only say rerank really is better, not that it is better by the amount I cared about.
+
+I mostly followed the plan, but I re-judged the gold set, dropped, replaced and added queries, and all of these changes are recorded in section 6 of PREREG.md. in the end the gold set has 59 queries, not 60. the minimum detectable difference that p2 score printed for rerank minus hybrid is 0.115, below my Δ of 0.15, so 59 queries were enough to see a gap of 0.15.
+
+next I would write more hand queries (40 or more), judge them carefully and fill in the missing labels, then compare rerank and hybrid again. what I want a reader to take from this: rerank is better than hybrid, but the gap may be smaller than I first thought.
 
 ---
 
